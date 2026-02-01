@@ -44,9 +44,9 @@ const SocialLink = ({ href, icon, label }: SocialLinkProps) => {
 
 const SocialLinks = () => {
   const links = [
-    { href: "https://github.com", icon: <Github size={18} strokeWidth={1.5} />, label: "GitHub" },
-    { href: "https://linkedin.com", icon: <Linkedin size={18} strokeWidth={1.5} />, label: "LinkedIn" },
-    { href: "https://instagram.com", icon: <Instagram size={18} strokeWidth={1.5} />, label: "Instagram" },
+    { href: "https://github.com/Shubhtistic", icon: <Github size={18} strokeWidth={1.5} />, label: "GitHub" },
+    { href: "https://www.linkedin.com/in/shubhtistic/", icon: <Linkedin size={18} strokeWidth={1.5} />, label: "LinkedIn" },
+    { href: "https://www.instagram.com/shubhtistic", icon: <Instagram size={18} strokeWidth={1.5} />, label: "Instagram" },
   ];
 
   return (
