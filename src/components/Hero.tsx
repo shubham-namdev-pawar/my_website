@@ -1,26 +1,28 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
-import SocialLink from "./SocialLink";
+import SocialLinks from "./SocialLinks";
+import GrainOverlay from "./GrainOverlay";
+import AmbientGlow from "./AmbientGlow";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
+      staggerChildren: 0.12,
+      delayChildren: 0.3,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
-      duration: 0.8,
-      ease: [0.25, 0.4, 0.25, 1] as const,
+      duration: 0.9,
+      ease: [0.25, 0.1, 0.25, 1] as const,
     },
   },
 };
@@ -28,29 +30,27 @@ const itemVariants = {
 const Hero = () => {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
-      {/* Subtle background gradient */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-foreground/3 to-transparent blur-3xl" />
-        <div className="absolute bottom-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-t from-foreground/2 to-transparent blur-3xl" />
-      </div>
+      {/* Ambient background effects */}
+      <AmbientGlow />
+      <GrainOverlay />
 
       <motion.div
-        className="relative z-10 flex max-w-2xl flex-col items-center text-center"
+        className="relative z-10 flex max-w-3xl flex-col items-center text-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Greeting */}
         <motion.p
-          className="mb-8 text-sm font-medium tracking-widest text-muted-foreground uppercase"
+          className="mb-6 text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground/70"
           variants={itemVariants}
         >
-          Welcome, glad you're here
+          Welcome — glad you're here
         </motion.p>
 
         {/* Name */}
         <motion.h1
-          className="mb-6 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl md:text-7xl"
+          className="mb-4 text-5xl font-semibold tracking-[-0.03em] text-foreground text-glow sm:text-6xl md:text-7xl lg:text-8xl"
           variants={itemVariants}
         >
           Alex Chen
@@ -58,63 +58,46 @@ const Hero = () => {
 
         {/* Role */}
         <motion.p
-          className="mb-8 text-lg text-muted-foreground sm:text-xl"
+          className="mb-10 text-lg font-light tracking-wide text-muted-foreground sm:text-xl"
           variants={itemVariants}
         >
           Backend & Cloud Engineer
         </motion.p>
 
         {/* Quote */}
-        <motion.blockquote
-          className="mb-12 max-w-md border-l-2 border-border/50 pl-6 text-left"
+        <motion.div
+          className="mb-14 max-w-lg"
           variants={itemVariants}
         >
-          <p className="text-base leading-relaxed text-muted-foreground/80 italic">
-            "Build systems that are boring to operate. The best infrastructure is
-            the one you never have to think about."
+          <p className="text-base leading-relaxed text-muted-foreground/60 font-light italic">
+            "I build systems designed to be forgotten — infrastructure so reliable,
+            you never think about it."
           </p>
-        </motion.blockquote>
+        </motion.div>
 
         {/* Social Links */}
-        <motion.div
-          className="flex items-center gap-4"
-          variants={itemVariants}
-        >
-          <SocialLink
-            href="https://github.com"
-            icon={<Github size={20} />}
-            label="GitHub"
-          />
-          <SocialLink
-            href="https://linkedin.com"
-            icon={<Linkedin size={20} />}
-            label="LinkedIn"
-          />
-          <SocialLink
-            href="https://x.com"
-            icon={<Twitter size={20} />}
-            label="X (Twitter)"
-          />
+        <motion.div variants={itemVariants}>
+          <SocialLinks />
         </motion.div>
+      </motion.div>
 
-        {/* Subtle scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-        >
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 0.8 }}
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/40">
+            Scroll
+          </span>
           <motion.div
-            className="h-8 w-5 rounded-full border border-border/30"
-            initial={{ opacity: 0.5 }}
-          >
-            <motion.div
-              className="mx-auto mt-2 h-2 w-1 rounded-full bg-muted-foreground/50"
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </motion.div>
+            className="h-8 w-[1px] bg-gradient-to-b from-muted-foreground/30 to-transparent"
+            animate={{ scaleY: [1, 0.5, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
       </motion.div>
     </section>
   );
