@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 
 interface SocialLinkProps {
   href: string;
@@ -46,7 +46,7 @@ const SocialLinks = () => {
   const links = [
     { href: "https://github.com", icon: <Github size={18} strokeWidth={1.5} />, label: "GitHub" },
     { href: "https://linkedin.com", icon: <Linkedin size={18} strokeWidth={1.5} />, label: "LinkedIn" },
-    { href: "https://x.com", icon: <Twitter size={18} strokeWidth={1.5} />, label: "X (Twitter)" },
+    { href: "https://instagram.com", icon: <Instagram size={18} strokeWidth={1.5} />, label: "Instagram" },
   ];
 
   return (
